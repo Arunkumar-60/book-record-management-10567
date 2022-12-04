@@ -21,7 +21,7 @@ DELETE: Delete a user by id (check if he/she still has a issued book) (is there 
 
 ## /users/subscription-details/{id}
 
-GET: Get user subscription details
+GET: Get user subscription details [X]
 
 1. Date of subscription
 2. valid till
@@ -43,7 +43,7 @@ GET: Get all issued books [X]
 
 ## /books/issued/withfine
 
-GET: Get all issued books with fine
+GET: Get all issued books with fine [X]
 
  <!-- get list of user with issued books
  then find list of users with fine

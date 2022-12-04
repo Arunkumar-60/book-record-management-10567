@@ -4,8 +4,8 @@
   "description": "book record management server build with node.js and express",
   "main": "index.js",
   "scripts": {
-    "start" : "node index.js",
-    "dev" : "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Arunkumar-60/book-record-management-10567#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

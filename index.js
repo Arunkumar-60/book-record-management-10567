@@ -1,4 +1,8 @@
 const express = require("express");
+const dotenv = require("dotenv");
+
+//datebase connection
+const DbConnection = require("./databaseConnection");
 
 //destructuring an object
 
@@ -6,9 +10,12 @@ const express = require("express");
 const usersRouter = require("./routes/users");
 const booksRouter = require("./routes/books");
 
-
+dotenv.config();
 
 const app = express();
+
+DbConnection();
+//calling function formaking connnection possible
 
 const port = 8081;
 
