@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllBooks, getSingleBookById, getAllIssuedBooks } = require("../controllers/book-controller");
+const { getAllBooks, getSingleBookById, getAllIssuedBooks, addNewBook, updateBookById, getSingleBookByName } = require("../controllers/book-controller");
 
 const { books } = require("../data/books.json");
 const { users } = require("../data/users.json");
@@ -49,32 +49,7 @@ router.get("/issued/by-user", getAllIssuedBooks);
  * Data: author, name, genre, price, publisher, id
 */
 
-router.post('/', (req, res) => {
-    const { data } = req.body;
-
-    if (!data) {
-        return res.status(400).json({
-            success: false,
-            message: "No data provided",
-        });
-    }
-
-    const book = books.find((each) => each.id === data.id);
-
-    if (book) {
-        return res.status(404).json({
-            success: false,
-            message: "Book already exists with this id, pelase use a unique ID"
-        });
-    };
-
-    const allBooks = [...books, data];
-
-    return res.status(201).json({
-        success: true,
-        data: allBooks,
-    });
-});
+router.post('/', addNewBook);
 
 /**
  * Route: /books/:id
@@ -85,32 +60,11 @@ router.post('/', (req, res) => {
  * Data: author, name, genre, price, publisher, id
 */
 
-router.put("/:id", (req, res) => {
-    const { id } = req.params;
-    const { data } = req.body;
+router.put("/:id", updateBookById)
 
-    const book = books.find((each) => each.id == id);
+//additional route to get single book by name
 
-    if (!book) {
-        return res.status(400).json({
-            success: false,
-            message: "Books not found with that purticular ID"
-        })
-    }
-
-    const updateData = books.map((each) => {
-        if (each.id === id) {
-            return { ...each, ...data };
-        }
-        return each;
-
-    });
-
-    return res.status(200).json({
-        success: true,
-        data: updateData,
-    })
-})
+router.get("/getbook/name/:name", getSingleBookByName);
 
 
 //default export
